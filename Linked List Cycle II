@@ -1,0 +1,27 @@
+
+Node *firstNode(Node *head)
+{
+	//    Write your code here.
+    if(head==NULL||head->next==NULL) return false;
+    Node*slow=head;
+    Node*fast=head;
+    bool cyclefound =false;
+//     while(fast->next!=NULL && fast!=NULL)
+    while(fast &&fast->next)
+    { fast=fast->next->next;
+        slow=slow->next;
+       
+        if(fast==slow) 
+        { cyclefound = true;
+               break;
+        }
+    }
+    if(!cyclefound) return NULL;
+    fast = head;
+    while(fast!=slow)
+    {
+        slow=slow->next;
+        fast=fast->next;
+    }
+        return slow;
+}
